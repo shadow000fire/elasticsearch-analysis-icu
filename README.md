@@ -1,98 +1,35 @@
-ICU Analysis for ElasticSearch
+ICU Analysis for Elasticsearch
 ==================================
 
 The ICU Analysis plugin integrates Lucene ICU module into elasticsearch, adding ICU relates analysis components.
 
-In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-analysis-icu/1.12.0`.
+In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-analysis-icu/2.0.0.RC1`.
 
-
-<table>
-	<thead>
-		<tr>
-			<td>ICU Analysis Plugin</td>
-			<td>Elasticsearch</td>
-			<td>Release date</td>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>1.13.0-SNAPSHOT (master)</td>
-			<td>0.90.6 -> master</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>1.12.0</td>
-			<td>0.90.6 -> master</td>
-			<td>2013-11-06</td>
-		</tr>
-		<tr>
-			<td>1.11.0</td>
-			<td>0.90.3 -> 0.90.5</td>
-			<td>2013-08-08</td>
-		</tr>
-		<tr>
-			<td>1.10.0</td>
-			<td>0.90.1 -> 0.90.2</td>
-			<td>2013-05-30</td>
-		</tr>
-		<tr>
-			<td>1.9.0</td>
-			<td>0.90.0</td>
-			<td>2013-04-29</td>
-		</tr>
-		<tr>
-			<td>1.8.0</td>
-			<td>0.90.0</td>
-			<td>2013-02-26</td>
-		</tr>
-		<tr>
-			<td>1.7.0</td>
-			<td>0.19 -> 0.20</td>
-			<td>2012-09-28</td>
-		</tr>
-		<tr>
-			<td>1.6.0</td>
-			<td>0.19 -> 0.20</td>
-			<td>2012-09-27</td>
-		</tr>
-		<tr>
-			<td>1.5.0</td>
-			<td>0.19 -> 0.20</td>
-			<td>2012-04-30</td>
-		</tr>
-		<tr>
-			<td>1.4.0</td>
-			<td>0.19 -> 0.20</td>
-			<td>2012-03-20</td>
-		</tr>
-		<tr>
-			<td>1.3.0</td>
-			<td>0.19 -> 0.20</td>
-			<td>2012-03-20</td>
-		</tr>
-		<tr>
-			<td>1.2.0</td>
-			<td>0.19 -> 0.20</td>
-			<td>2012-02-07</td>
-		</tr>
-		<tr>
-			<td>1.1.0</td>
-			<td>0.18</td>
-			<td>2011-12-13</td>
-		</tr>
-		<tr>
-			<td>1.0.0</td>
-			<td>0.18</td>
-			<td>2011-12-05</td>
-		</tr>
-	</tbody>
-</table>
+|    ICU Analysis Plugin      |    elasticsearch    | Release date |
+|-----------------------------|---------------------|:------------:|
+| 2.0.0-SNAPSHOT (master)     | 1.0.0.RC1 -> master |              |
+| 2.0.0.RC1                   | 1.0.0.RC1 -> master |  2014-01-15  |
+| 1.14.0-SNAPSHOT (1.x)       | 0.90.8 -> 0.90      |              |
+| 1.13.0                      | 0.90.8 -> 0.90      |  2013-12-19  |
+| 1.12.0                      | 0.90.6 -> 0.90.7    |  2013-11-06  |
+| 1.11.0                      | 0.90.3 -> 0.90.5    |  2013-08-08  |
+| 1.10.0                      | 0.90.1 -> 0.90.2    |  2013-05-30  |
+| 1.9.0                       | 0.90.0              |  2013-04-29  |
+| 1.8.0                       | 0.90.0              |  2013-02-26  |
+| 1.7.0                       | 0.19 -> 0.20        |  2012-09-28  |
+| 1.6.0                       | 0.19 -> 0.20        |  2012-09-27  |
+| 1.5.0                       | 0.19 -> 0.20        |  2012-04-30  |
+| 1.4.0                       | 0.19 -> 0.20        |  2012-03-20  |
+| 1.3.0                       | 0.19 -> 0.20        |  2012-03-20  |
+| 1.2.0                       | 0.19 -> 0.20        |  2012-02-07  |
+| 1.1.0                       | 0.18                |  2011-12-13  |
+| 1.0.0                       | 0.18                |  2011-12-05  |
 
 
 ICU Normalization
 -----------------
 
-Normalizes characters as explained "here":http://userguide.icu-project.org/transforms/normalization. It registers itself by default under `icu_normalizer` or `icuNormalizer` using the default settings. Allows for the name parameter to be provided which can include the following values: `nfc`, `nfkc`, and `nfkc_cf`. Here is a sample settings:
+Normalizes characters as explained [here](http://userguide.icu-project.org/transforms/normalization). It registers itself by default under `icu_normalizer` or `icuNormalizer` using the default settings. Allows for the name parameter to be provided which can include the following values: `nfc`, `nfkc`, and `nfkc_cf`. Here is a sample settings:
 
     {
         "index" : {
@@ -128,7 +65,9 @@ Folding of unicode characters based on `UTR#30`. It registers itself under `icu_
 ICU Filtering
 -------------
 
-The folding can be filtered by a set of unicode characters with the parameter `unicodeSetFilter`. This is useful for a non-internationalized search engine where retaining a set of national characters which are primary letters in a specific language is wanted. See syntax for the UnicodeSet "here":http://icu-project.org/apiref/icu4j/com/ibm/icu/text/UnicodeSet.html.
+The folding can be filtered by a set of unicode characters with the parameter `unicodeSetFilter`. This is useful for a
+non-internationalized search engine where retaining a set of national characters which are primary letters in a specific
+language is wanted. See syntax for the UnicodeSet [here](http://icu-project.org/apiref/icu4j/com/ibm/icu/text/UnicodeSet.html).
 
 The Following example exempts Swedish characters from the folding. Note that the filtered characters are NOT lowercased which is why we add that filter below.
 
@@ -154,7 +93,11 @@ The Following example exempts Swedish characters from the folding. Note that the
 ICU Collation
 -------------
 
-Uses collation token filter. Allows to either specify the rules for collation (defined "here":http://www.icu-project.org/userguide/Collate_Customization.html) using the `rules` parameter (can point to a location or expressed in the settings, location can be relative to config location), or using the `language` parameter (further specialized by country and variant). By default registers under `icu_collation` or `icuCollation` and uses the default locale.
+Uses collation token filter. Allows to either specify the rules for collation
+(defined [here](http://www.icu-project.org/userguide/Collate_Customization.html)) using the `rules` parameter
+(can point to a location or expressed in the settings, location can be relative to config location), or using the
+`language` parameter (further specialized by country and variant). By default registers under `icu_collation` or
+`icuCollation` and uses the default locale.
 
 Here is a sample settings:
 
@@ -196,7 +139,7 @@ Optional options:
 * `strength` - The strength property determines the minimum level of difference considered significant during comparison.
  The default strength for the Collator is `tertiary`, unless specified otherwise by the locale used to create the Collator.
  Possible values: `primary`, `secondary`, `tertiary`, `quaternary` or `identical`.
- See ICU Collation:http://icu-project.org/apiref/icu4j/com/ibm/icu/text/Collator.html documentation for a more detailed
+ See [ICU Collation](http://icu-project.org/apiref/icu4j/com/ibm/icu/text/Collator.html) documentation for a more detailed
  explanation for the specific values.
 * `decomposition` - Possible values: `no` or `canonical`. Defaults to `no`. Setting this decomposition property with
 `canonical` allows the Collator to handle un-normalized text properly, producing the same results as if the text were
@@ -221,7 +164,7 @@ Expert options:
 ICU Tokenizer
 -------------
 
-Breaks text into words according to UAX #29: Unicode Text Segmentation ((http://www.unicode.org/reports/tr29/)).
+Breaks text into words according to [UAX #29: Unicode Text Segmentation](http://www.unicode.org/reports/tr29/).
 
     {
         "index" : {
@@ -241,7 +184,7 @@ License
 
     This software is licensed under the Apache 2 license, quoted below.
 
-    Copyright 2009-2013 Shay Banon and ElasticSearch <http://www.elasticsearch.org>
+    Copyright 2009-2014 Elasticsearch <http://www.elasticsearch.org>
 
     Licensed under the Apache License, Version 2.0 (the "License"); you may not
     use this file except in compliance with the License. You may obtain a copy of

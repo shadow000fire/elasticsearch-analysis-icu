@@ -1,10 +1,29 @@
+/*
+ * Licensed to Elasticsearch under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package org.elasticsearch.index.analysis;
 
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.util.ULocale;
-import org.apache.lucene.analysis.core.KeywordTokenizer;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.core.KeywordTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.elasticsearch.common.inject.Injector;
 import org.elasticsearch.common.inject.ModulesBuilder;
@@ -18,16 +37,16 @@ import org.elasticsearch.index.IndexNameModule;
 import org.elasticsearch.index.settings.IndexSettingsModule;
 import org.elasticsearch.indices.analysis.IndicesAnalysisModule;
 import org.elasticsearch.indices.analysis.IndicesAnalysisService;
-import org.testng.annotations.Test;
+import org.elasticsearch.test.ElasticsearchTestCase;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.StringReader;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 // Tests borrowed from Solr's Icu collation key filter factory test.
-public class SimpleIcuCollationTokenFilterTests {
+public class SimpleIcuCollationTokenFilterTests extends ElasticsearchTestCase {
 
     /*
     * Turkish has some funny casing.
@@ -290,6 +309,10 @@ public class SimpleIcuCollationTokenFilterTests {
                 .addAttribute(CharTermAttribute.class);
         CharTermAttribute term2 = stream2
                 .addAttribute(CharTermAttribute.class);
+
+        stream1.reset();
+        stream2.reset();
+
         assertThat(stream1.incrementToken(), equalTo(true));
         assertThat(stream2.incrementToken(), equalTo(true));
         assertThat(Integer.signum(term1.toString().compareTo(term2.toString())), equalTo(Integer.signum(comparison)));
